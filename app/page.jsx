@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import TaskList from "@/components/TaskList";
 import ProgressBar from "@/components/ProgressBar";
+import Image from "next/image";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -14,7 +15,7 @@ export default function Home() {
   const [tasks, setTasks] = useState([
     {
       id: 0,
-      title: "Assignment 2: Data Structures",
+      name: "Assignment 2: Data Structures",
       dueDate: "2023-03-02",
       type: "assignment",
       status: "completed",
@@ -22,7 +23,7 @@ export default function Home() {
     },
     {
       id: 1,
-      title: "Lab 3: SQL Queries",
+      name: "Lab 3: SQL Queries",
       dueDate: "2023-03-26",
       type: "assignment",
       status: "in-progress",
@@ -30,7 +31,7 @@ export default function Home() {
     },
     {
       id: 2,
-      title: "Assignment 4: Ethics Report",
+      name: "Assignment 4: Ethics Report",
       dueDate: "2023-04-01",
       type: "assignment",
       status: "in-progress",
@@ -38,7 +39,7 @@ export default function Home() {
     },
     {
       id: 3,
-      title: "Midterm Exam: Object-Oriented Programming",
+      name: "Midterm Exam: Object-Oriented Programming",
       dueDate: "2023-04-06",
       type: "exam",
       status: "in-progress",
@@ -46,7 +47,7 @@ export default function Home() {
     },
     {
       id: 4,
-      title: "Quiz 2: Operating Systems",
+      name: "Quiz 2: Operating Systems",
       dueDate: "2023-04-01",
       type: "quiz",
       status: "in-progress",
@@ -61,6 +62,21 @@ export default function Home() {
   // @TODO: update db with new task list
   function saveChanges() {
     alert("Task list updated!");
+  }
+
+  if (!session && status === "unauthenticated") {
+    return (
+      <div className="w-full flex flex-col justify-center items-center mt-10">
+        <h1 className="text-4xl font-bold mb-20">Please Sign in to Get Started</h1>
+        <Image
+          src="./assets/images/student_studying.svg"
+          alt="Sign in"
+          width={600}
+          height={600}
+          layout="contain"
+        />
+      </div>
+    )
   }
 
   return (
