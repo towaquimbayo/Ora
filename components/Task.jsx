@@ -26,6 +26,7 @@ const Task = ({name, type, dueDate, state}) => {
     >
 
         <div
+
             className="flex border rounded-lg p-4 hover:shadow-md transition duration-300 ease-in-out cursor-pointer w-full"
             onClick={() => {
                 router.push("/edit-assignment")
