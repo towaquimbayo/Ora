@@ -22,7 +22,7 @@ const CourseForm = ({ type, course, setCourse, submitting, handleSubmit }) => {
                         Credits
                     </span>
 
-                    <input value={course.credit} onChange={(e) => setCourse({ ...course, credit: e.target.value })} placeholder='4' required className='form_input' type='number' min='0' />
+                    <input value={course.credits} onChange={(e) => setCourse({ ...course, credits: e.target.value })} placeholder='4' required className='form_input' type='number' min='0' />
                 </label>
 
                 <label>
@@ -97,7 +97,7 @@ const CourseForm = ({ type, course, setCourse, submitting, handleSubmit }) => {
                         Description
                     </span>
 
-                    <textarea value={course.description} onChange={(e) => setCourse({ ...course, description: e.target.value })} placeholder='Enter description here...' required className='form_textarea' />
+                    <textarea value={course.description} onChange={(e) => setCourse({ ...course, description: e.target.value })} placeholder='Enter description here...' required className='form_textarea' maxLength={300} />
                 </label>
 
                 <div className='flex-end mx-3 mb-5 gap-4'>

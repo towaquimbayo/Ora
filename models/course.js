@@ -10,9 +10,9 @@ const CourseSchema = new Schema({
         required: [true, 'Name is required!'],
     },
     description: String,
-    credit: {
+    credits: {
         type: Number,
-        required: [true, 'Credit is required!'],
+        required: [true, 'Credits are required!'],
     },
     professor: String,
     state: {

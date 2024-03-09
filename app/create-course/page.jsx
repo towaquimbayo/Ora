@@ -13,7 +13,7 @@ const CreateCourse = () => {
     const [course, setCourse] = useState({ 
         name: '', 
         description: '', 
-        credit: 0, 
+        credits: 0, 
         professor: '', 
         state: 'in_progress', 
         breakdown: []
@@ -30,7 +30,7 @@ const CreateCourse = () => {
                     userId: session?.user.id,
                     name: course.name,
                     description: course.description,
-                    credit: course.credit,
+                    credits: course.credits,
                     professor: course.professor,
                     state: course.state,
                     breakdown: course.breakdown,             

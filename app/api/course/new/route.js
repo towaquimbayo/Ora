@@ -2,7 +2,7 @@ import { connectToDB } from "@/utils/database";
 import Course from "@/models/course";
 
 export const POST = async (req) => {
-    const { userId, name, description, credit, professor, state, breakdown } = await req.json();
+    const { userId, name, description, credits, professor, state, breakdown } = await req.json();
 
     try {
         await connectToDB();
@@ -11,7 +11,7 @@ export const POST = async (req) => {
             creator: userId,
             name,
             description,
-            credit,
+            credits,
             professor,
             state,
             breakdown,
