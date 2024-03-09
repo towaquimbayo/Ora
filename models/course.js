@@ -1,14 +1,18 @@
 import { Schema, model, models } from 'mongoose';
 
 const CourseSchema = new Schema({
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    },
     name: {
         type: String,
         required: [true, 'Name is required!'],
     },
     description: String,
-    credit: {
+    credits: {
         type: Number,
-        required: [true, 'Credit is required!'],
+        required: [true, 'Credits are required!'],
     },
     professor: String,
     state: {
