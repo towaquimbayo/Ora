@@ -49,7 +49,7 @@ export default function TaskCard({ task, setTasks, setTasksUpdated }) {
       <div className="flex-col w-full pl-4">
         <div className="flex justify-between">
           <h2 className="text-md font-semibold mb-2 overflow-hidden truncate sm:text-lg">
-            {task.title}
+            {task.name}
           </h2>
           <p className="text-sm pl-4 min-w-fit">{task.course}</p>
         </div>

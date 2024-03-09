@@ -17,7 +17,7 @@ export default function TaskList({
         <div className="flex flex-col gap-4 w-full">
           {inProgressTasks.map((task) => (
             <TaskCard
-              key={task.title}
+              key={task.id}
               task={task}
               setTasks={setTasks}
               setTasksUpdated={setTasksUpdated}
