@@ -35,10 +35,10 @@ const CourseForm = ({ type, course, setCourse, submitting, handleSubmit }) => {
 
                 <label>
                     <span className='font-semibold text-base text-gray-700'>
-                        State
+                        Status
                     </span>
                     <br />
-                    <select value={course.state} onChange={(e) => setCourse({ ...course, state: e.target.value })} required className='form_select' >
+                    <select value={course.status} onChange={(e) => setCourse({ ...course, status: e.target.value })} required className='form_select' >
                         <option value='not_started'>Not Started</option>
                         <option value='in_progress'>In Progress</option>
                         <option value='completed'>Completed</option>

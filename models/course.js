@@ -15,7 +15,7 @@ const CourseSchema = new Schema({
         required: [true, 'Credits are required!'],
     },
     professor: String,
-    state: {
+    status: {
         type: String,
         enum: ['not_started', 'in_progress', 'completed'],
         default: 'in_progress',

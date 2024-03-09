@@ -15,7 +15,7 @@ const CreateCourse = () => {
         description: '', 
         credits: 0, 
         professor: '', 
-        state: 'in_progress', 
+        status: 'in_progress', 
         breakdown: []
     });
 
@@ -32,7 +32,7 @@ const CreateCourse = () => {
                     description: course.description,
                     credits: course.credits,
                     professor: course.professor,
-                    state: course.state,
+                    status: course.status,
                     breakdown: course.breakdown,             
                 }),
             });
