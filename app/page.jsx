@@ -6,12 +6,14 @@ import { useRouter } from "next/navigation";
 import TaskList from "@/components/TaskList";
 import ProgressBar from "@/components/ProgressBar";
 import Image from "next/image";
+import Spinner from "@/components/Spinner";
 
 export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
   const [tasksUpdated, setTasksUpdated] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [tasks, setTasks] = useState([
     {
       id: 0,
@@ -59,15 +61,27 @@ export default function Home() {
   const completedTasks =
     tasks.filter((task) => task.status === "completed") || [];
 
-  // @TODO: update db with new task list
-  function saveChanges() {
-    alert("Task list updated!");
+  async function saveChanges() {
+    setLoading(true);
+    const res = await fetch("/api/task/update", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: session.user.id, tasks }),
+    });
+    setLoading(false);
+    if (res.ok) {
+      alert("Task list updated!");
+    } else {
+      alert("Failed to update task list");
+    }
   }
 
   if (!session && status === "unauthenticated") {
     return (
       <div className="w-full flex flex-col justify-center items-center mt-10">
-        <h1 className="text-4xl font-bold mb-20">Please Sign in to Get Started</h1>
+        <h1 className="text-4xl font-bold mb-20">
+          Please Sign in to Get Started!
+        </h1>
         <Image
           src="./assets/images/student_studying.svg"
           alt="Sign in"
@@ -76,7 +90,7 @@ export default function Home() {
           layout="contain"
         />
       </div>
-    )
+    );
   }
 
   return (
@@ -128,7 +142,7 @@ export default function Home() {
                 onClick={saveChanges}
                 disabled={!tasksUpdated}
               >
-                Save Changes
+                {loading ? <Spinner /> : "Save Changes"}
               </button>
             </div>
           </div>
