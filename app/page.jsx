@@ -106,7 +106,7 @@ export default function Home() {
             setTasksUpdated={setTasksUpdated}
           />
         </div>
-        <div className="w-full flex flex-col lg:w-1/3">
+        <div className="w-full flex flex-col lg:w-1/3 mt-0 lg:mt-14">
           <div className="flex flex-col rounded-lg border px-6 py-4 gap-4 w-full">
             <h1 className="text-2xl font-bold">Weekly Progress</h1>
             <div className="flex justify-between gap-4 mb-2">
