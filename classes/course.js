@@ -17,6 +17,9 @@ class Course {
 			this.courseItems = courseItems; 
 	}
 
+	addCourseItem(name, type, description, requirementText, percentageWorth, dueDate, state) {
+		this.courseItems.push(new CourseItem(name, this.name, type, description, requirementText, percentageWorth, dueDate, state));
+	}
 }
 
 function extractTypesCourseItems(courseItems) {
