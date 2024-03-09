@@ -18,7 +18,13 @@ const Accordion = ({title, content}) => {
             >
                 <div className="flex items-center">
                     {isActive ? <ChevronDown size={10}/> : <ChevronRight size={10}/>}
-                    <div className="ml-2">{title}</div>
+                    <div className="ml-2 flex flex-row justify-center">
+                        {title}
+                        <span
+                            className="bg-gray-200 px-1 py-0.5 rounded ml-2 text-center text-xs flex flex-row justify-center"> {/* Apply styles here */}
+                            {content.length}
+                        </span>
+                    </div>
                 </div>
                 <div>
                     <button
