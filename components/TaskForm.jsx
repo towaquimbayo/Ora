@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CldUploadWidget } from 'next-cloudinary';
+import { LucidePlus } from 'lucide-react';
 
 const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
     const [selectedCourse, setSelectedCourse] = useState(null);
@@ -35,7 +36,7 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
       }, [breakdown, setTask]);
 
     const handleUploadSuccess = (result) => {
-        console.log(result.info.secure_url);
+        console.log(result);
         setTask((prevTask) => ({
             ...prevTask,
             file: result.info.secure_url,
@@ -126,14 +127,17 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
                             <button
                                 type='button'
                                 onClick={open}
-                                className='px-4 py-2 text-white bg-blue-500 rounded-md'
+                                className='form_input bg-white relative'
                             >
-                                Upload File
+                                {task.file ? (
+                                    <span className='truncate'>{task.file}</span>
+                                ) : (
+                                    <span>No file uploaded</span>
+                                )}
+                                <LucidePlus className='right-0 absolute mr-2' size={18} color='#888888' />
                             </button>
                         )}
                     </CldUploadWidget>
-
-                    {/* <input value={task.file} onChange={(e) => setTask({ ...task, file: e.target.value })} placeholder='Upload file here...' required className='form_input bg-white' type='file' /> */}
                 </label>
 
                 <label>
