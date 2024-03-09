@@ -1,7 +1,7 @@
-const Home = () => (
-  <section className="w-full flex-center flex-col">
-    
-  </section>
-);
-
-export default Home;
+export default function Home() {
+  return (
+    <div>
+      <h1>Home</h1>
+    </div>
+  )
+}
