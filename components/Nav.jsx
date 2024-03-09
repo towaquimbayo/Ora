@@ -28,13 +28,13 @@ const Nav = () => {
         {session?.user ? (
           <div className='flex gap-3 md:gap-5'>
             <Link href="/create-course" className='black_btn'>Create Course</Link>
-            <Link href="/" className='black_btn'>Create Task</Link>
+            <Link href="/create-task" className='black_btn'>Create Task</Link>
 
             <button type='button' onClick={signOut} className='outline_btn'>
               Sign Out
             </button>
 
-            <Link href="/">
+            <Link href="/profile">
               <Image src={session?.user.image} alt="profile" width={37} height={37} className='rounded-full' />
             </Link>
           </div>
