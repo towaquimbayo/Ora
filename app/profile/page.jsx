@@ -7,7 +7,6 @@ import {data} from "autoprefixer";
 
 const Profile = () => {
     const {data: session} = useSession();
-     console.log("data", data)
     const tasks = [
         {
             id: 0,
@@ -213,7 +212,7 @@ const Profile = () => {
     });
     return (
         <div className="container w-full mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold text-center mb-8">Welcome {session && session.user.name}</h1>
+            <h1 className="text-4xl font-bold mb-8 lg:mb-4">{session && session.user.name}'s Courses</h1>
             <div className="accordion justify-start">
                 {Object.entries(tasksByCourse).map(([course, tasks]) => (
                     <Accordion key={course} title={course} content={tasks}/>
