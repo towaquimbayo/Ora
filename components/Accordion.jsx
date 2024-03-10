@@ -1,4 +1,4 @@
-import {ChevronDown, ChevronRight, CircleEllipsis, Pencil} from "lucide-react";
+import {ChevronDown, ChevronRight, LucidePencil} from "lucide-react";
 import Task from "@/components/Task";
 import {useState} from "react";
 import {useRouter} from "next/navigation"; // Use useRouter from "next/router" instead of "next/navigation"
@@ -33,13 +33,13 @@ const Accordion = ({title, content}) => {
                         }}
                         className="px-3 py-1 text-sm bg-black rounded-full text-white"
                     >
-                        <Pencil size={13} color="#ffffff"/>
+                        <LucidePencil size={13} color="#ffffff"/>
                     </button>
                 </div>
             </div>
             {/* Render tasks if the accordion is active */}
             {isActive && (
-                <div className="max-h-60 overflow-y-auto">
+                <div className="">
                     {content.map(({id, title, dueDate, type, status, course}) => (
                         <Task key={id} name={title} type={type} dueDate={dueDate} state={status}/>
                     ))}
