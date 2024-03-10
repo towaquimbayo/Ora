@@ -38,7 +38,7 @@ const CreateCourse = () => {
             });
 
             if (response.ok) {
-                router.push('/');
+                router.push('/profile');
             } else {
                 console.log(response)
             }

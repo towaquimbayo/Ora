@@ -14,7 +14,7 @@ export default function CalendarView({ tasksParam }) {
   useEffect(() => {
     const formattedTasks = tasksParam.map((task) => {
       return {
-        id: task.id,
+        id: task._id,
         title: task.name,
         start: new Date(task.dueDate),
         allDay: true,
@@ -42,7 +42,7 @@ export default function CalendarView({ tasksParam }) {
   };
 
   const handleTaskDateCloseModal = () => {
-    const originalTask = tasksParam.find((task) => task.id == taskMoved.id);
+    const originalTask = tasksParam.find((task) => task._id == taskMoved.id);
     if (originalTask) {
       setTasks((prevTasks) => {
         const updatedTasks = prevTasks.map((task) => {

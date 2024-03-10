@@ -22,7 +22,7 @@ export function TaskDueDateModal({
             {formatDate(
               tasks
                 .find((task) => task.id == taskMoved.id)
-                .start.toLocaleDateString("en-CA")
+                .start
             )}
           </p>
           <MoveRight size={20} color="#000" />

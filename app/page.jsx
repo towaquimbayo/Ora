@@ -54,14 +54,15 @@ export default function Home() {
   const { data: session, status } = useSession();
 
   const [myTasks, setMyTasks] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
+
   useEffect(() => {
     const fetchTasks = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/tasks`);
       const data = await response.json();
-
       console.log(data);
-
       setMyTasks(data);
+      setIsFetching(false);
     };
 
     if (session?.user.id) fetchTasks();
@@ -109,7 +110,7 @@ export default function Home() {
           </button>
         )}
       </div>
-      {myTasks.length === 0 ? (
+      {isFetching ? null : myTasks.length === 0 ? (
         <div className="flex flex-col items-center justify-center w-full">
           <h1 className="text-3xl font-semibold my-4">Hmm... No Tasks Found</h1>
           <p className="mb-12">Please create a task to get started!</p>
