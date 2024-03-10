@@ -1,16 +1,16 @@
 # QDS Hacks 2024 - Team 15
 
-### Welcome to ora, our project for QDS Hacks 2024. We are Team 15.
+### Welcome to ōRA, our project for QDS Hacks 2024. We are Team 15.
 
 ## Project Description:
-Ora is a web application designed to assist students in managing their time effectively and reducing the stress 
+ōRA is a web application designed to assist students in managing their time effectively and reducing the stress 
 associated with assignments and deadlines.
 
 ## Features:
 - Add personalized courses and tasks within courses along with course weight, percentWorth and deadlines to give clear info of all actionable items.
 - Be able to modify and update existing items as needed.
 - Ability to converse with chatbot regarding assignment with history
-- Ora prioritises you tasks for you based on data crunched on all assignments.
+- Ora prioritises your tasks for you based on data crunched on all assignments.
 
 ## Team Members ##
 - Noufil Saqib
