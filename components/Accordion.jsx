@@ -40,9 +40,9 @@ const Accordion = ({title, id, content}) => {
             </div>
             {/* Render tasks if the accordion is active */}
             {isActive && (
-                <div className="">
-                    {content.map(({_id, title, dueDate, type, status}) => (
-                        <Task key={_id} id = {_id} name={title} type={type} dueDate={dueDate} state={status}/>
+                <div>
+                    {content.map(({_id, name, dueDate, type, status}) => (
+                        <Task key={_id} id={_id} name={name} dueDate={dueDate} />
                     ))}
                 </div>
             )}
