@@ -1,4 +1,17 @@
+# QDS Hacks 2024 - Team 15
+
+### Welcome to ora. This is a project for QDS Hacks 2024. We are team 15. Our project is a web app that helps people with time managment
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Team Members
+- Noufil 
+- Towa
+- Abhishek
+- Mangat
+- Gurnoor
+- Bhavnoor
+
 
 ## Getting Started
 

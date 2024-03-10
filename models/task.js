@@ -20,8 +20,8 @@ const TaskSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['not_started', 'in_progress', 'completed'],
-        default: 'not_started',
+        enum: ['in_progress', 'completed'],
+        default: 'in_progress',
     },
     dueDate: {
         type: Date,

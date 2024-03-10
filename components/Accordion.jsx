@@ -1,12 +1,12 @@
 import {ChevronDown, ChevronRight, LucidePencil} from "lucide-react";
 import Task from "@/components/Task";
 import {useState} from "react";
-import {useRouter} from "next/navigation"; // Use useRouter from "next/router" instead of "next/navigation"
+import {useRouter} from "next/navigation";
 
-const Accordion = ({title, content}) => {
+const Accordion = ({title, id, content}) => {
     const [isActive, setIsActive] = useState(false);
     const router = useRouter();
-
+    console.log(id, content)
 
     return (
         <div className="flex flex-col w-full">
@@ -29,7 +29,8 @@ const Accordion = ({title, content}) => {
                         type="button"
                         onClick={(e) => {
                             e.stopPropagation();
-                            router.push('/edit-course');
+                            console.log("inide the button",id)
+                            router.push(`/edit-course?id=${id}`);
                         }}
                         className="px-3 py-1 text-sm bg-black rounded-full text-white"
                     >
@@ -39,9 +40,9 @@ const Accordion = ({title, content}) => {
             </div>
             {/* Render tasks if the accordion is active */}
             {isActive && (
-                <div className="">
-                    {content.map(({id, title, dueDate, type, status, course}) => (
-                        <Task key={id} name={title} type={type} dueDate={dueDate} state={status}/>
+                <div>
+                    {content.map(({_id, name, dueDate, type, status}) => (
+                        <Task key={_id} id={_id} name={name} dueDate={dueDate} />
                     ))}
                 </div>
             )}
