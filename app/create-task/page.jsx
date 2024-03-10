@@ -1,13 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import {useState, useEffect} from 'react';
+import {useSession} from 'next-auth/react';
+import {useRouter} from 'next/navigation';
 import TaskForm from '@/components/TaskForm';
+import CourseForm from "@/components/CourseForm";
+import ChatBot from "@/components/Chatbot";
 
 const CreateTask = () => {
     const router = useRouter();
-    const { data: session } = useSession();
+    const {data: session} = useSession();
 
     const [myCourses, setMyCourses] = useState([]);
     useEffect(() => {
@@ -17,7 +19,7 @@ const CreateTask = () => {
 
             setMyCourses(data);
         };
-    
+
         if (session?.user.id) fetchCourses();
     }, [session?.user.id]);
 
@@ -38,8 +40,7 @@ const CreateTask = () => {
 
         try {
             const response = await fetch('/api/task/new', {
-                method: 'POST',
-                body: JSON.stringify({
+                method: 'POST', body: JSON.stringify({
                     userId: session.user.id,
                     course: task.course,
                     name: task.name,
@@ -63,8 +64,18 @@ const CreateTask = () => {
         }
     };
 
-    return (
-        <TaskForm data={myCourses} type="Create" task={task} setTask={setTask} submitting={submitting} handleSubmit={createTask} />
+    return (<div className="w-full">
+            <div className="inline-flex w-full space-x-4 ">
+                <div className="w-1/2">
+                    <TaskForm data={myCourses} type="Create" task={task} setTask={setTask} submitting={submitting}
+                              handleSubmit={createTask}/>
+                </div>
+                <div className="w-1/2">
+                    <ChatBot/>
+                </div>
+            </div>
+        </div>
+
     );
 };
 

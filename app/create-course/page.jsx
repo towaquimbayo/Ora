@@ -1,21 +1,23 @@
 'use client';
 
-import { useState } from 'react';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import {useState} from 'react';
+import {useSession} from 'next-auth/react';
+import {useRouter} from 'next/navigation';
 import CourseForm from '@/components/CourseForm';
+import Chatbot from "@/components/Chatbot";
+import ChatBot from "@/components/Chatbot";
 
 const CreateCourse = () => {
     const router = useRouter();
-    const { data: session } = useSession();
+    const {data: session} = useSession();
 
     const [submitting, setIsSubmitting] = useState(false);
-    const [course, setCourse] = useState({ 
-        name: '', 
-        description: '', 
-        credits: 0, 
-        professor: '', 
-        status: 'in_progress', 
+    const [course, setCourse] = useState({
+        name: '',
+        description: '',
+        credits: 0,
+        professor: '',
+        status: 'in_progress',
         breakdown: []
     });
 
@@ -33,7 +35,7 @@ const CreateCourse = () => {
                     credits: course.credits,
                     professor: course.professor,
                     status: course.status,
-                    breakdown: course.breakdown,             
+                    breakdown: course.breakdown,
                 }),
             });
 
@@ -50,7 +52,11 @@ const CreateCourse = () => {
     };
 
     return (
-        <CourseForm type="Create" course={course} setCourse={setCourse} submitting={submitting} handleSubmit={createCourse} />
+        <>
+            <CourseForm type="Create" course={course} setCourse={setCourse} submitting={submitting}
+                        handleSubmit={createCourse}/>
+        </>
+
     );
 };
 
