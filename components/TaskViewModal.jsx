@@ -19,7 +19,7 @@ export function TaskViewModal({ task, handleCloseModal }) {
         <div className="flex justify-end mt-4">
           <button
             className="text-sm font-semibold text-blue-600"
-            onClick={() => router.push(`./edit-task/id=${task.id}`)}
+            onClick={() => router.push(`./edit-task?id=${task.id}`)}
           >
             View Task
           </button>

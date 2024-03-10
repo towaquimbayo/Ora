@@ -109,7 +109,7 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
                         Due Date
                     </span>
 
-                    <input value={task.dueDate} onChange={(e) => setTask({ ...task, dueDate: e.target.value })} required className='form_input' type='date' />
+                    <input value={new Date(task.dueDate).toISOString().split('T')[0]} onChange={(e) => setTask({ ...task, dueDate: e.target.value })} required className='form_input' type='date' />
                 </label>
 
                 <label>
