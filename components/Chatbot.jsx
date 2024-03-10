@@ -1,25 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useSession} from "next-auth/react";
+import Image from "next/image";
 import {LucideMessageCircle, LucideMessageCircleOff, LucideSendHorizontal} from "lucide-react";
 
 function ChatBot() {
-    const test = [
-        {"from": "student", "text": "Hi, I'm working on a Java assignment and I'm a bit stuck. Can you help me?"},
-        {"from": "bot", "text": "Of course! What seems to be the problem?"},
-        {
-            "from": "student",
-            "text": "I need to write a method that takes an array of integers and returns the sum of all the numbers. Here's what I have so far:"
-        },
-        {
-            "from": "bot",
-            "text": "You can calculate the sum by iterating over the array and adding each element to a variable. Here's how you can complete the calculateSum method:"
-        },
-        {
-            "from": "chatgpt",
-            "text": "```java\npublic static int calculateSum(int[] numbers) {\n    int sum = 0;\n    for (int i = 0; i < numbers.length; i++) {\n        sum += numbers[i];\n    }\n    return sum;\n}\n```"
-        },
-        {"from": "student", "text": "That makes sense. Thank you!"}
-    ]
 
 
     const {data: session} = useSession();
@@ -93,9 +77,11 @@ function ChatBot() {
                                     </span>
                                     </div>
                                 </div>
-                                <img
+                                <Image
                                     src={message.from === 'bot' ? 'https://cdn.icon-icons.com/icons2/1371/PNG/512/robot02_90810.png' : session.user.image}
-                                    alt="" className="w-6 h-6 rounded-full" 
+                                    alt="" className="w-6 h-6 rounded-full"
+                                    width={24}
+                                    height={24}
                                 />
                             </div>
                         </div>
@@ -103,9 +89,13 @@ function ChatBot() {
                     <div style={{display: botTyping ? 'flex' : 'none'}}>
                         <div>
                             <div className={`flex items-end`}>
-                                <img
+                                <Image
                                     src={'https://cdn.icon-icons.com/icons2/1371/PNG/512/robot02_90810.png'}
-                                    alt="" className="w-6 h-6 rounded-full"/>
+                                    alt="" className="w-6 h-6 rounded-full"
+                                    width={24}
+                                    height={24}
+                                />
+
                                 <div
                                     className={`flex flex-col space-y-2 text-md leading-tight max-w-lg mx-2 'order-2 items-start'`}>
                                     <div>
