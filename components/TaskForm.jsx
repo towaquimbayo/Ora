@@ -46,8 +46,8 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
 
     return (
         <section className='w-full max-w-full flex-start flex-col mb-16'>
-            <h1 className='head_text text-left'>
-                <span className='blue_gradient'>{type} Task</span>
+            <h1 className='text-4xl font-bold mb-4'>
+                <span className=''>{type} Task</span>
             </h1>
 
             <form onSubmit={handleSubmit} className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism'>
