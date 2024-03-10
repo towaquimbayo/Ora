@@ -1,13 +1,13 @@
 'use client';
 
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useSession} from 'next-auth/react';
 import {useRouter} from 'next/navigation';
 import CourseForm from '@/components/CourseForm';
 
 const CreateCourse = () => {
     const router = useRouter();
-    const {data: session} = useSession();
+    const { data: session, status } = useSession();
 
     const [submitting, setIsSubmitting] = useState(false);
     const [course, setCourse] = useState({
@@ -18,6 +18,12 @@ const CreateCourse = () => {
         status: 'in_progress',
         breakdown: []
     });
+
+    useEffect(() => {
+        if (!session && status === "unauthenticated") {
+            router.push('/');
+        }
+    }, [session, status, router]);
 
     const createCourse = async (e) => {
         e.preventDefault();

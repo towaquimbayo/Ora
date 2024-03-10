@@ -1,13 +1,22 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import CourseForm from '@/components/CourseForm';
 
 const EditCourse = () => {
+    const { data: session, status } = useSession();
     const router = useRouter();
     const searchParams = useSearchParams();
     const courseId = searchParams.get('id');
+
+    useEffect(() => {
+        if (!session && status === "unauthenticated") {
+            router.push('/');
+        }
+    }, [session, status, router]);
+
 
     const [submitting, setIsSubmitting] = useState(false);
     const [course, setCourse] = useState({
