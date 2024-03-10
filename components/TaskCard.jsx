@@ -1,3 +1,4 @@
+import { formatDate } from "@/utils/helpers";
 import { Circle, CircleCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -17,16 +18,6 @@ export default function TaskCard({ task, setTasks, setTasksUpdated }) {
   useEffect(() => {
     setTaskChecked(task.status === "completed");
   }, [task.status]);
-
-  function formatDate(date) {
-    const dateFormatted = new Date(date);
-    return dateFormatted.toLocaleDateString("en-CA", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      timeZone: "America/Vancouver",
-    });
-  }
 
   return (
     <div
