@@ -16,22 +16,24 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
     }, [task.course, data]);
 
     useEffect(() => {
-        if (data.length >= 1) {
+        if (data.length === 1) {
             const course = data[0];
-            setTask((prevTask) => ({
-                ...prevTask,
-                course: course._id,
-            }));
-            setSelectedCourse(course);
-            setBreakdown(course.breakdown);
-            if (course.breakdown.length === 1) {
-                setTask((prevTask) => ({
-                    ...prevTask,
-                    type: course.breakdown[0]._id,
-                }));
+            if (task.course !== course._id) {
+                setTask({ ...task, course: course._id });
+                setSelectedCourse(course);
+                setBreakdown(course.breakdown);
             }
         }
-    }, [data, setTask]);
+    }, [data, setTask, task]);
+
+    useEffect(() => {
+        if (breakdown.length === 1) {
+          setTask((prevTask) => ({
+            ...prevTask,
+            type: breakdown[0]._id,
+          }));
+        }
+      }, [breakdown, setTask]);
 
     const handleUploadSuccess = (result) => {
         console.log(result);
@@ -44,8 +46,8 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
 
     return (
         <section className='w-full max-w-full flex-start flex-col mb-16'>
-            <h1 className='text-4xl font-bold mb-4'>
-                <span className=''>{type} Task</span>
+            <h1 className='head_text text-left'>
+                <span className='blue_gradient'>{type} Task</span>
             </h1>
 
             <form onSubmit={handleSubmit} className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism'>
@@ -81,7 +83,7 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
                         Type
                     </span>
                     <br />
-                    <select value={task.type?._id} onChange={(e) => {
+                    <select value={task.type?._id} onChange={(e) =>{
                         const selectedType = breakdown.find((type) => type._id === e.target.value);
                         setTask({ ...task, type: selectedType });
                     }} required className='form_select' >
@@ -97,6 +99,7 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
                     </span>
                     <br />
                     <select value={task.status} onChange={(e) => setTask({ ...task, status: e.target.value })} required className='form_select' >
+                        <option value='not_started'>Not Started</option>
                         <option value='in_progress'>In Progress</option>
                         <option value='completed'>Completed</option>
                     </select>
@@ -107,7 +110,7 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
                         Due Date
                     </span>
 
-                    <input value={new Date(task.dueDate).toISOString().split('T')[0]} onChange={(e) => setTask({ ...task, dueDate: e.target.value })} required className='form_input' type='date' />
+                    <input value={task.dueDate} onChange={(e) => setTask({ ...task, dueDate: e.target.value })} required className='form_input' type='date' />
                 </label>
 
                 <label>

@@ -1,13 +1,15 @@
 'use client';
 
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {useSession} from 'next-auth/react';
 import {useRouter} from 'next/navigation';
 import CourseForm from '@/components/CourseForm';
+import Chatbot from "@/components/Chatbot";
+import ChatBot from "@/components/Chatbot";
 
 const CreateCourse = () => {
     const router = useRouter();
-    const { data: session, status } = useSession();
+    const {data: session} = useSession();
 
     const [submitting, setIsSubmitting] = useState(false);
     const [course, setCourse] = useState({
@@ -18,12 +20,6 @@ const CreateCourse = () => {
         status: 'in_progress',
         breakdown: []
     });
-
-    useEffect(() => {
-        if (!session && status === "unauthenticated") {
-            router.push('/');
-        }
-    }, [session, status, router]);
 
     const createCourse = async (e) => {
         e.preventDefault();
@@ -44,7 +40,7 @@ const CreateCourse = () => {
             });
 
             if (response.ok) {
-                router.push('/profile');
+                router.push('/');
             } else {
                 console.log(response)
             }
@@ -57,7 +53,8 @@ const CreateCourse = () => {
 
     return (
         <>
-            <CourseForm type="Create" course={course} setCourse={setCourse} submitting={submitting} handleSubmit={createCourse}/>
+            <CourseForm type="Create" course={course} setCourse={setCourse} submitting={submitting}
+                        handleSubmit={createCourse}/>
         </>
 
     );
