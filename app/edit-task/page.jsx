@@ -34,9 +34,9 @@ const EditTask = () => {
 
     const [submitting, setIsSubmitting] = useState(false);
     const [task, setTask] = useState({
-        course: '',
+        course: null,
         name: '',
-        type: '',
+        type: null,
         description: '',
         status: 'not_started',
         dueDate: new Date().toISOString().split('T')[0],

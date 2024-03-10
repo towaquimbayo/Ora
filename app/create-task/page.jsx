@@ -4,7 +4,6 @@ import {useState, useEffect} from 'react';
 import {useSession} from 'next-auth/react';
 import {useRouter} from 'next/navigation';
 import TaskForm from '@/components/TaskForm';
-import ChatBot from "@/components/Chatbot";
 
 const CreateTask = () => {
     const router = useRouter();
@@ -30,10 +29,10 @@ const CreateTask = () => {
 
     const [submitting, setIsSubmitting] = useState(false);
     const [task, setTask] = useState({
-        course: '',
+        course: null,
         name: '',
         description: '',
-        type: '',
+        type: null,
         status: 'in_progress',
         dueDate: new Date().toISOString().split('T')[0],
         file: '',
