@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { LucidePlus, LucideMinus } from 'lucide-react';
 
 const CourseForm = ({ type, course, setCourse, submitting, handleSubmit }) => {
+    console.log(course);
     return (
         <section className='w-full max-w-full flex-start flex-col mb-16'>
             <h1 className='head_text text-left'>

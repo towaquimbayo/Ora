@@ -4,8 +4,6 @@ import {useState} from 'react';
 import {useSession} from 'next-auth/react';
 import {useRouter} from 'next/navigation';
 import CourseForm from '@/components/CourseForm';
-import Chatbot from "@/components/Chatbot";
-import ChatBot from "@/components/Chatbot";
 
 const CreateCourse = () => {
     const router = useRouter();
@@ -53,8 +51,7 @@ const CreateCourse = () => {
 
     return (
         <>
-            <CourseForm type="Create" course={course} setCourse={setCourse} submitting={submitting}
-                        handleSubmit={createCourse}/>
+            <CourseForm type="Create" course={course} setCourse={setCourse} submitting={submitting} handleSubmit={createCourse}/>
         </>
 
     );

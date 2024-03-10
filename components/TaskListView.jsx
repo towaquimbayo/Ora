@@ -20,7 +20,13 @@ export default function TaskListView({ tasks, setTasks }) {
         await fetch(`/api/task/${task._id}`, {
           method: "PATCH",
           body: JSON.stringify({
+            course: task.course,
+            name: task.name,
+            description: task.description,
+            type: task.type,
             status: task.status,
+            dueDate: task.dueDate,
+            file: task.file,
           })
         });
       } catch (error) {
