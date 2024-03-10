@@ -13,9 +13,19 @@ export default function TaskCard({ task, setTasks, setTasksUpdated }) {
       const updatedTasks = [...prevTasks];
       const index = updatedTasks.findIndex((t) => t._id === task._id);
       updatedTasks[index].status = taskChecked ? "in_progress" : "completed";
+      // const updatedTasks = prevTasks.map((t) => {
+      //   if (t._id === task._id) {
+      //     return {
+      //       ...t,
+      //       status: taskChecked ? "in_progress" : "completed",
+      //     };
+      //   }
+      //   return t;
+      // });
       return updatedTasks;
     });
     setTaskChecked((prevTaskChecked) => !prevTaskChecked);
+    // setTasksUpdated(true);
   }
 
   useEffect(() => {

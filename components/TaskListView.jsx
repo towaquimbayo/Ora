@@ -1,16 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import ProgressBar from "./ProgressBar";
 import Spinner from "./Spinner";
 import TaskList from "./TaskList";
 
 export default function TaskListView({ tasks, setTasks }) {
   const router = useRouter();
-
+  const { data: session } = useSession();
   const [tasksUpdated, setTasksUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
-  const inProgressTasks = tasks.filter((task) => task.status === "in_progress") || [];
   const completedTasks = tasks.filter((task) => task.status === "completed") || [];
+  const [myCourses, setMyCourses] = useState([]) || [];
+  const [orderedTasks, setOrderedTasks] = useState([tasks.filter((task) => task.status === "in_progress")]) || [tasks.filter((task) => task.status === "in_progress")];
+  const prioritizeCalledRef = useRef(false);
+  
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const response = await fetch(`/api/users/${session?.user.id}/courses`);
+      const data = await response.json();
+      setMyCourses(data);
+    };
+    if (session?.user.id) fetchCourses();
+  }, [session?.user.id, setMyCourses]);
+  
+  useEffect(() => {
+    const inProgressTasks = tasks.filter((task) => task.status === "in_progress") || [];
+    const prioritizeTasks = async () => {
+      if (!prioritizeCalledRef.current) {
+        const response = await fetch("/api/prioritize", {
+          method: "POST",
+          body: JSON.stringify({
+            unorderedTasks: inProgressTasks,
+            myCourses: myCourses,
+          }),
+        });
+        const data = await response.json();
+        setOrderedTasks(data);
+        prioritizeCalledRef.current = true;
+      }
+    };
+    if (myCourses.length > 0) prioritizeTasks();
+  }, [tasks, myCourses, setOrderedTasks]);
 
   async function saveChanges() {
     setLoading(true);
@@ -42,7 +73,7 @@ export default function TaskListView({ tasks, setTasks }) {
     <div className="w-full flex flex-col-reverse justify-center gap-8 mb-4 lg:flex-row">
       <div className="w-full flex flex-col lg:w-2/3">
         <TaskList
-          inProgressTasks={inProgressTasks}
+          inProgressTasks={orderedTasks}
           completedTasks={completedTasks}
           setTasks={setTasks}
           setTasksUpdated={setTasksUpdated}
