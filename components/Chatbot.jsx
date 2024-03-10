@@ -88,14 +88,15 @@ function ChatBot() {
                                     className={`flex flex-col space-y-2 text-md leading-tight max-w-lg mx-2 ${message.from === 'bot' ? 'order-2 items-start' : 'order-1 items-end'}`}>
                                     <div>
                                     <span
-                                        className={`px-4 py-3 rounded-xl inline-block ${message.from === 'bot' ? 'rounded-bl-none bg-gray-100 text-gray-600' : 'rounded-br-none bg-blue-500 text-white'}`}>
+                                        className={`px-4 py-3 rounded-xl inline-block ${message.from === 'bot' ? 'rounded-bl-none bg-white text-gray-600' : 'rounded-br-none bg-blue-500 text-white'}`}>
                                         {message.text}
                                     </span>
                                     </div>
                                 </div>
                                 <img
                                     src={message.from === 'bot' ? 'https://cdn.icon-icons.com/icons2/1371/PNG/512/robot02_90810.png' : session.user.image}
-                                    alt="" className="w-6 h-6 rounded-full"/>
+                                    alt="" className="w-6 h-6 rounded-full" 
+                                />
                             </div>
                         </div>
                     ))}
@@ -109,7 +110,7 @@ function ChatBot() {
                                     className={`flex flex-col space-y-2 text-md leading-tight max-w-lg mx-2 'order-2 items-start'`}>
                                     <div>
                                     <span
-                                        className={`px-4 py-3 rounded-xl inline-block 'rounded-bl-none bg-gray-100 text-gray-600'`}>
+                                        className={`px-4 py-3 rounded-xl inline-block 'rounded-bl-none bg-white text-gray-600'`}>
                                         {"...."}
                                     </span>
                                     </div>
@@ -132,7 +133,7 @@ function ChatBot() {
                                    }
                                }}
                                ref={inputRef}
-                               className="text-md w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-5 pr-16 bg-gray-100 border-2 border-gray-200 focus:border-blue-500 rounded-full py-2"/>
+                               className="text-md w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-5 pr-16 bg-white border border-gray-200 focus:border-blue-500 rounded-full py-2"/>
                         <div className="absolute right-2 items-center inset-y-0 hidden sm:flex">
                             <button type="button"
                                     className="inline-flex items-center justify-center rounded-full h-8 w-8 transition duration-200 ease-in-out text-white bg-blue-500 hover:bg-blue-600 focus:outline-none"

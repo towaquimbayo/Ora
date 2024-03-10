@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import ProgressBar from "./ProgressBar";
 import Spinner from "./Spinner";
 import TaskList from "./TaskList";
