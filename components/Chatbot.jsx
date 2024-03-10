@@ -3,6 +3,25 @@ import {useSession} from "next-auth/react";
 import {LucideMessageCircle, LucideMessageCircleOff, LucideSendHorizontal} from "lucide-react";
 
 function ChatBot() {
+    const test = [
+        {"from": "student", "text": "Hi, I'm working on a Java assignment and I'm a bit stuck. Can you help me?"},
+        {"from": "bot", "text": "Of course! What seems to be the problem?"},
+        {
+            "from": "student",
+            "text": "I need to write a method that takes an array of integers and returns the sum of all the numbers. Here's what I have so far:"
+        },
+        {
+            "from": "bot",
+            "text": "You can calculate the sum by iterating over the array and adding each element to a variable. Here's how you can complete the calculateSum method:"
+        },
+        {
+            "from": "chatgpt",
+            "text": "```java\npublic static int calculateSum(int[] numbers) {\n    int sum = 0;\n    for (int i = 0; i < numbers.length; i++) {\n        sum += numbers[i];\n    }\n    return sum;\n}\n```"
+        },
+        {"from": "student", "text": "That makes sense. Thank you!"}
+    ]
+
+
     const {data: session} = useSession();
     const [messages, setMessages] = useState([{
         from: 'bot',
@@ -10,7 +29,9 @@ function ChatBot() {
     }]);
     const [botTyping, setBotTyping] = useState(false);
     const [inputValue, setInputValue] = useState('');
-    const [isChatOpen, setIsChatOpen] = useState(true);
+    const [isChatOpen, setIsChatOpen] = useState(false);
+    const inputRef = useRef(null);
+
 
     const updateChat = (message) => {
         if (!message.trim()) return
@@ -26,11 +47,18 @@ function ChatBot() {
 
     useEffect(() => {
         const lastMessage = messages[messages.length - 1];
-        if (lastMessage.from === 'bot') return;
+        if (lastMessage.from === 'bot') {
+            // Focus the input field after bot responds
+            inputRef.current.focus();
+            return;
+        }
 
         setTimeout(() => {
             setBotTyping(false);
-            setMessages([...messages, {from: 'bot', text: 'Bot response here'}]);
+            setMessages([...messages, {
+                from: 'bot',
+                text: 'ioafoiaufoiaufiaufoiaufoiaufia foiaoifaoifia faioufioafioaufi oifioafioafiooaijfoipafoiaf oafoiafoipajfoi poiaiufoiafoipajf aiofao ifj '
+            }]);
         }, 2000);
 
     }, [messages]);
@@ -42,15 +70,15 @@ function ChatBot() {
 
     return (
         <div
-            className={`flex-1 p-2 sm:p-6 justify-between h-[75vh] mt-10 w-full max-w-2xl flex flex-col gap-7 fixed ${isChatOpen ? 'glassmorphism' : ''}`}>
+            className={`flex-1 p-0 justify-between h-[75vh] mt-10  max-sm:w-5/6 w-full max-w-2xl flex flex-col gap-7 fixed ${isChatOpen ? 'glassmorphism max-sm:bg-white' : ''}`}>
             <button onClick={toggleChat}
-                    className="absolute bottom-2 right-2 bg-blue-500 text-white px-4 py-3  rounded-full focus:outline-none">
+                    className="absolute bottom-5 right-5 bg-blue-500 text-white px-4 py-3  rounded-full focus:outline-none">
                 {!isChatOpen ? <LucideMessageCircle size={18}/> : <LucideMessageCircleOff size={18}/>
                 }
             </button>
             <div className={`${isChatOpen ? 'block' : 'hidden'} h-3/4`}>
                 <div id="messages"
-                     className="flex flex-col space-y-4 p-3 h-full overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
+                     className="flex flex-col space-y-4 p-3 h-full overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch  overflow-x-hidden"
 
                 >
                     {messages.map((message, key) => (
@@ -93,14 +121,17 @@ function ChatBot() {
                 </div>
                 <div className="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
                     <div className="relative flex">
-                        <input type="text" placeholder="Say something..." autoComplete="off" autoFocus="true"
+                        <input type="text" placeholder={botTyping ? "Wait for bot's response..." : "Say something..."}
+                               autoComplete="off" autoFocus="true"
                                value={inputValue}
+                               disabled={botTyping}
                                onChange={(e) => setInputValue(e.target.value)}
                                onKeyDown={(e) => {
                                    if (e.key === 'Enter') {
                                        updateChat(inputValue);
                                    }
                                }}
+                               ref={inputRef}
                                className="text-md w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-5 pr-16 bg-gray-100 border-2 border-gray-200 focus:border-blue-500 rounded-full py-2"/>
                         <div className="absolute right-2 items-center inset-y-0 hidden sm:flex">
                             <button type="button"

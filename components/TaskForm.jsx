@@ -6,6 +6,7 @@ import { LucidePlus } from 'lucide-react';
 const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [breakdown, setBreakdown] = useState([]);
+    console.log(task);
 
     useEffect(() => {
         const course = data.find((course) => course._id === task.course);

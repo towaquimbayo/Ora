@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import {useEffect, useState} from 'react';
+import {useRouter, useSearchParams} from 'next/navigation';
 import CourseForm from '@/components/CourseForm';
 
 const EditCourse = () => {
@@ -71,8 +71,10 @@ const EditCourse = () => {
     };
 
     return (
+
         <>
-            <CourseForm type="Edit" course={course} setCourse={setCourse} submitting={submitting} handleSubmit={editCourse}/>
+            <CourseForm type="Edit" course={course} setCourse={setCourse} submitting={submitting}
+                        handleSubmit={editCourse}/>
         </>
     );
 }

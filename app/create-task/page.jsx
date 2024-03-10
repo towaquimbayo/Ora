@@ -63,16 +63,11 @@ const CreateTask = () => {
         }
     };
 
-    return (<div className="w-full">
-            <div className="inline-flex w-full space-x-6 ">
-                <div className="w-1/2">
-                    <TaskForm data={myCourses} type="Create" task={task} setTask={setTask} submitting={submitting} handleSubmit={createTask}/>
-                </div>
-                <div className="w-1/2">
-                    <ChatBot/>
-                </div>
-            </div>
-        </div>
+    return (<>
+            <TaskForm data={myCourses} type="Create" task={task} setTask={setTask} submitting={submitting}
+                      handleSubmit={createTask}/>
+        </>
+
 
     );
 };

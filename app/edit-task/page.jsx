@@ -1,13 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import {useEffect, useState} from 'react';
+import {useSession} from 'next-auth/react';
+import {useRouter, useSearchParams} from 'next/navigation';
 import TaskForm from '@/components/TaskForm';
+import ChatBot from "@/components/Chatbot";
 
 const EditTask = () => {
     const router = useRouter();
-    const { data: session } = useSession();
+    const {data: session} = useSession();
     const searchParams = useSearchParams();
     const taskId = searchParams.get('id');
 
@@ -30,7 +31,7 @@ const EditTask = () => {
         type: '',
         description: '',
         status: 'not_started',
-        dueDate: '',
+        dueDate: new Date().toISOString().split('T')[0],
         file: '',
     });
 
@@ -88,14 +89,24 @@ const EditTask = () => {
     }
 
     return (
-        <TaskForm
-            data={myCourses}
-            type="Edit"
-            task={task}
-            setTask={setTask}
-            isSubmitting={submitting}
-            onSubmit={editTask}
-        />
+
+        <div className="w-full">
+            <div className="flex flex-col-reverse sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6">
+                <div className="sm:w-1/2">
+                    <TaskForm
+                        data={myCourses}
+                        type="Edit"
+                        task={task}
+                        setTask={setTask}
+                        isSubmitting={submitting}
+                        onSubmit={editTask}
+                    />
+                </div>
+                <div className="sm:w-1/2">
+                    <ChatBot/>
+                </div>
+            </div>
+        </div>
     );
 }
 
