@@ -7,8 +7,8 @@ export default function TaskCard({ task, setTasks, setTasksUpdated }) {
   function toggleTaskCheck() {
     setTasks((prevTasks) => {
       const updatedTasks = [...prevTasks];
-      const index = updatedTasks.findIndex((t) => t.id === task.id);
-      updatedTasks[index].status = taskChecked ? "in-progress" : "completed";
+      const index = updatedTasks.findIndex((t) => t._id === task._id);
+      updatedTasks[index].status = taskChecked ? "in_progress" : "completed";
       return updatedTasks;
     });
     setTaskChecked((prevTaskChecked) => !prevTaskChecked);
@@ -30,7 +30,7 @@ export default function TaskCard({ task, setTasks, setTasksUpdated }) {
 
   return (
     <div
-      className="flex border rounded-lg p-4 hover:shadow-md transition duration-300 ease-in-out cursor-pointer w-full"
+      className="flex border rounded-lg p-4 transition duration-300 ease-in-out cursor-pointer w-full glassmorphism"
       onClick={() => {
         toggleTaskCheck();
         setTaskChecked((prevTaskChecked) => !prevTaskChecked);
@@ -51,7 +51,6 @@ export default function TaskCard({ task, setTasks, setTasksUpdated }) {
           <h2 className="text-md font-semibold mb-2 overflow-hidden truncate sm:text-lg">
             {task.name}
           </h2>
-          <p className="text-sm pl-4 min-w-fit">{task.course}</p>
         </div>
         <p className="text-sm font-light">
           Due date: {formatDate(task.dueDate)}

@@ -1,56 +1,71 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { Calendar, ListTodo } from "lucide-react";
 import TaskListView from "@/components/TaskListView";
 
+// [
+//   {
+//     id: 0,
+//     name: "Assignment 2: Data Structures",
+//     dueDate: "2023-03-02",
+//     type: "assignment",
+//     status: "completed",
+//     course: "COMP 3760",
+//   },
+//   {
+//     id: 1,
+//     name: "Lab 3: SQL Queries",
+//     dueDate: "2023-03-26",
+//     type: "assignment",
+//     status: "in-progress",
+//     course: "COMP 4537",
+//   },
+//   {
+//     id: 2,
+//     name: "Assignment 4: Ethics Report",
+//     dueDate: "2023-04-01",
+//     type: "assignment",
+//     status: "in-progress",
+//     course: "LIBS 7102",
+//   },
+//   {
+//     id: 3,
+//     name: "Midterm Exam: Object-Oriented Programming",
+//     dueDate: "2023-04-06",
+//     type: "exam",
+//     status: "in-progress",
+//     course: "COMP 3522",
+//   },
+//   {
+//     id: 4,
+//     name: "Quiz 2: Operating Systems",
+//     dueDate: "2023-04-01",
+//     type: "quiz",
+//     status: "in-progress",
+//     course: "COMP 4736",
+//   }
+// ]
+
 export default function Home() {
   const { data: session, status } = useSession();
 
-  const [tasks, setTasks] = useState([
-    {
-      id: 0,
-      name: "Assignment 2: Data Structures",
-      dueDate: "2023-03-02",
-      type: "assignment",
-      status: "completed",
-      course: "COMP 3760",
-    },
-    {
-      id: 1,
-      name: "Lab 3: SQL Queries",
-      dueDate: "2023-03-26",
-      type: "assignment",
-      status: "in-progress",
-      course: "COMP 4537",
-    },
-    {
-      id: 2,
-      name: "Assignment 4: Ethics Report",
-      dueDate: "2023-04-01",
-      type: "assignment",
-      status: "in-progress",
-      course: "LIBS 7102",
-    },
-    {
-      id: 3,
-      name: "Midterm Exam: Object-Oriented Programming",
-      dueDate: "2023-04-06",
-      type: "exam",
-      status: "in-progress",
-      course: "COMP 3522",
-    },
-    {
-      id: 4,
-      name: "Quiz 2: Operating Systems",
-      dueDate: "2023-04-01",
-      type: "quiz",
-      status: "in-progress",
-      course: "COMP 4736",
-    },
-  ]);
+  const [myTasks, setMyTasks] = useState([]);
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const response = await fetch(`/api/users/${session?.user.id}/tasks`);
+      const data = await response.json();
+
+      console.log(data);
+
+      setMyTasks(data);
+    };
+
+    if (session?.user.id) fetchTasks();
+  }, [session?.user.id]);
+
   const [calendarView, setCalendarView] = useState(false);
 
   if (!session && status === "unauthenticated") {
@@ -94,7 +109,7 @@ export default function Home() {
       {calendarView ? (
         <div>Calendar here</div>
       ) : (
-        <TaskListView tasks={tasks} setTasks={setTasks} />
+        <TaskListView tasks={myTasks} setTasks={setMyTasks} />
       )}
     </div>
   );

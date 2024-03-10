@@ -99,7 +99,6 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
                     </span>
                     <br />
                     <select value={task.status} onChange={(e) => setTask({ ...task, status: e.target.value })} required className='form_select' >
-                        <option value='not_started'>Not Started</option>
                         <option value='in_progress'>In Progress</option>
                         <option value='completed'>Completed</option>
                     </select>

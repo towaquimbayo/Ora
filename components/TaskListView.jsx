@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import ProgressBar from "./ProgressBar";
 import Spinner from "./Spinner";
 import TaskList from "./TaskList";
@@ -9,24 +10,26 @@ export default function TaskListView({ tasks, setTasks }) {
 
   const [tasksUpdated, setTasksUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
-  const inProgressTasks =
-    tasks.filter((task) => task.status === "in-progress") || [];
-  const completedTasks =
-    tasks.filter((task) => task.status === "completed") || [];
+  const inProgressTasks = tasks.filter((task) => task.status === "in_progress") || [];
+  const completedTasks = tasks.filter((task) => task.status === "completed") || [];
 
   async function saveChanges() {
     setLoading(true);
-    const res = await fetch("/api/task/update", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId: session.user.id, tasks }),
+    tasks.forEach(async (task) => {
+      try {
+        await fetch(`/api/task/${task._id}`, {
+          method: "PATCH",
+          body: JSON.stringify({
+            status: task.status,
+          })
+        });
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+        setTasksUpdated(true);
+      }
     });
-    setLoading(false);
-    if (res.ok) {
-      alert("Task list updated!");
-    } else {
-      alert("Failed to update task list");
-    }
   }
 
   return (
@@ -40,7 +43,7 @@ export default function TaskListView({ tasks, setTasks }) {
         />
       </div>
       <div className="w-full flex flex-col lg:w-1/3 mt-0 lg:mt-14">
-        <div className="flex flex-col rounded-lg border px-6 py-4 gap-4 w-full">
+        <div className="flex flex-col rounded-lg border px-6 py-4 gap-4 w-full glassmorphism">
           <h1 className="text-2xl font-bold">Weekly Progress</h1>
           <div className="flex justify-between gap-4 mb-2">
             <div className="flex flex-col gap-2">
@@ -65,7 +68,7 @@ export default function TaskListView({ tasks, setTasks }) {
               Add Task
             </button>
             <button
-              className={`max-w-full text-sm bg-white text-[#3573e7] border rounded-md px-4 py-2.5 mt-4 hover:bg-[#3573e7] hover:text-white transition duration-300 ease-in-out sm:max-w-fit ${
+              className={`max-w-full text-sm bg-white text-[#3573e7] border rounded-md px-4 py-2.5 hover:bg-[#3573e7] hover:text-white transition duration-300 ease-in-out sm:max-w-fit sm:mt-4 ${
                 tasksUpdated
                   ? ""
                   : "bg-[#d3d3d3] text-[#858585] cursor-not-allowed"
