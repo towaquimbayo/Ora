@@ -9,7 +9,7 @@ const Task = ({ id, name, dueDate }) => {
   return (
     <div style={{ margin: "10px" }}>
       <div
-        className="flex border rounded-lg p-4 hover:shadow-md transition duration-300 ease-in-out cursor-pointer w-full"
+        className="flex border rounded-lg p-4 bg-transparent  ease-in-out cursor-pointer w-full glassmorphism"
         onClick={() => {
           router.push(`/edit-task?id=${id}`);
         }}
