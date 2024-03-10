@@ -36,7 +36,7 @@ export const PATCH = async (req, { params }) => {
         await existingTask.save();
 
         return new Response("Successfully updated the task", { status: 200 });
-    } catch (error) {
-        return new Response("Failed to update the task", { status: 500 });
-    }
+        } catch (error) {
+            return new Response("Failed to update the task", { status: 500 });
+        }
 }
