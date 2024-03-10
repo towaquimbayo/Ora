@@ -1,18 +1,26 @@
 'use client';
 
-import {useEffect, useState} from 'react';
-import {useSession} from 'next-auth/react';
-import {useRouter, useSearchParams} from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import TaskForm from '@/components/TaskForm';
 import ChatBot from "@/components/Chatbot";
 
 const EditTask = () => {
     const router = useRouter();
-    const {data: session} = useSession();
+    const { data: session, status } = useSession();
     const searchParams = useSearchParams();
-    const taskId = searchParams.get('id');
 
+    const taskId = searchParams.get('id');
     const [myCourses, setMyCourses] = useState([]);
+
+    useEffect(() => {
+        console.log(session)
+        if (!session && status === "unauthenticated") {
+            router.push('/');
+        }
+    }, [session, status, router]);
+
     useEffect(() => {
         const fetchCourses = async () => {
             const response = await fetch(`/api/users/${session?.user.id}/courses`);

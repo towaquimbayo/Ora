@@ -8,7 +8,13 @@ import ChatBot from "@/components/Chatbot";
 
 const CreateTask = () => {
     const router = useRouter();
-    const {data: session} = useSession();
+    const { data: session, status } = useSession();
+
+    useEffect(() => {
+        if (!session && status === "unauthenticated") {
+            router.push('/');
+        }
+    }, [session, status, router]);
 
     const [myCourses, setMyCourses] = useState([]);
     useEffect(() => {
