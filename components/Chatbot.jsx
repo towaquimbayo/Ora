@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useSession} from "next-auth/react";
-import {LucideMessageCircle, LucideMessageCircleOff} from "lucide-react";
+import {LucideMessageCircle, LucideMessageCircleOff, LucideSendHorizontal} from "lucide-react";
 
 function ChatBot() {
     const {data: session} = useSession();
@@ -13,6 +13,7 @@ function ChatBot() {
     const [isChatOpen, setIsChatOpen] = useState(true);
 
     const updateChat = (message) => {
+        if (!message.trim()) return
         setMessages([...messages, {from: 'user', text: message}]);
         setInputValue('');
         setBotTyping(true);
@@ -43,13 +44,13 @@ function ChatBot() {
         <div
             className={`flex-1 p-2 sm:p-6 justify-between h-[75vh] mt-10 w-full max-w-2xl flex flex-col gap-7 fixed ${isChatOpen ? 'glassmorphism' : ''}`}>
             <button onClick={toggleChat}
-                    className="absolute top-2 right-2 bg-blue-500 text-white px-4 py-2 rounded-full focus:outline-none">
-                {!isChatOpen ? <LucideMessageCircle/> : <LucideMessageCircleOff/>
+                    className="absolute bottom-2 right-2 bg-blue-500 text-white px-4 py-3  rounded-full focus:outline-none">
+                {!isChatOpen ? <LucideMessageCircle size={18}/> : <LucideMessageCircleOff size={18}/>
                 }
             </button>
-            <div className={`${isChatOpen ? 'block' : 'hidden'}`}>
+            <div className={`${isChatOpen ? 'block' : 'hidden'} h-3/4`}>
                 <div id="messages"
-                     className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
+                     className="flex flex-col space-y-4 p-3 h-full overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
 
                 >
                     {messages.map((message, key) => (
@@ -105,7 +106,7 @@ function ChatBot() {
                             <button type="button"
                                     className="inline-flex items-center justify-center rounded-full h-8 w-8 transition duration-200 ease-in-out text-white bg-blue-500 hover:bg-blue-600 focus:outline-none"
                                     onClick={() => updateChat(inputValue)}>
-                                <i className="mdi mdi-arrow-right text-xl leading-none"></i>
+                                <LucideSendHorizontal size={18}/>
                             </button>
                         </div>
                     </div>
