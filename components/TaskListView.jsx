@@ -33,6 +33,7 @@ export default function TaskListView({ tasks, setTasks }) {
       } finally {
         setLoading(false);
         setTasksUpdated(true);
+        router.push("/");
       }
     });
   }
