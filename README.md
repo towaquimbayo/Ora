@@ -25,9 +25,9 @@ to run application on localhost for testing
 It lessens your burden of having to check cross deadlines and gives you the optimum schedule so you can spend more time working than on planning!
 
 ## Tech Stack:
-WebDev: HTML, CSS, Javascript
-Frameworks: Next.js, React, TailwindCSS
-Node libraries: openai and various UI component libraries
+- WebDev: HTML, CSS, Javascript
+- Frameworks: Next.js, React, TailwindCSS
+- Node libraries: openai and various UI component libraries
 
 
  
