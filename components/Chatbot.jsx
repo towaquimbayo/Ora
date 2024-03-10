@@ -7,39 +7,78 @@ import {
   LucideSendHorizontal,
 } from "lucide-react";
 
+import axios from 'axios';
+
 function ChatBot() {
-  const sampleData = [
-    {
-      from: "bot",
-      text: "Hi Asmerelda, last time you had issues with understanding the four chambers of the heart, is that clearer now?",
-    },
-    {},
-    {
-      from: "bot",
-      text: "The left atrium receives oxygen-rich blood from the lungs and passes it to the left ventricle. The left ventricle then pumps this oxygenated blood out to the body through the aorta.",
-    },
-    {},
-    {
-      from: "bot",
-      text: "You're welcome! If you have any more questions or need further assistance, feel free to ask.",
-    },
-  ];
+//   const sampleData = [
+//     {
+//       from: "bot",
+//       text: "Hi Asmerelda, last time you had issues with understanding the four chambers of the heart, is that clearer now?",
+//     },
+//     {},
+//     {
+//       from: "bot",
+//       text: "The left atrium receives oxygen-rich blood from the lungs and passes it to the left ventricle. The left ventricle then pumps this oxygenated blood out to the body through the aorta.",
+//     },
+//     {},
+//     {
+//       from: "bot",
+//       text: "You're welcome! If you have any more questions or need further assistance, feel free to ask.",
+//     },
+//   ];
+
+const defaultBotMessage = {
+    from: "bot",
+    text: "Hi, how may I help you?",
+  };
 
   const { data: session } = useSession();
-  const [messages, setMessages] = useState([]);
-  const [botTyping, setBotTyping] = useState(true);
+  const [messages, setMessages] = useState([defaultBotMessage]);
+  const [botTyping, setBotTyping] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isChatOpen, setIsChatOpen] = useState(false);
   const inputRef = useRef(null);
 
   console.log(messages);
 
-  const updateChat = (message) => {
-    if (!message.trim()) return;
-    setMessages([...messages, { from: "user", text: message }]);
+  const updateChat = async (userMessage) => {
+    if (!userMessage.trim()) return;
+    const newMessage = { from: "user", text: userMessage };
+    setMessages(prevMessages => [...prevMessages, newMessage]);
     setInputValue("");
     setBotTyping(true);
+
+    try {
+        // Call the fetchBotResponse function to get the bot response
+        const botResponse = await fetchBotResponse(messages, userMessage);
+
+         // Update the UI with the bot response
+        setMessages(prevMessages => [...prevMessages, { from: "bot", text: botResponse }]);
+    
+        // Disable bot typing indicator
+        setBotTyping(false);
+      } catch (error) {
+        console.error("Error fetching bot response:", error);
+        // Handle error fetching bot response
+      }
   };
+
+  const fetchBotResponse = async (messages, userMessage) => {
+    try {
+
+        console.log("Data sent to server:", { messages, userMessage });
+        const requestData = { messages, userMessage };
+        const response = await axios.post('https://qds2024-ai-api.vercel.app/send-message', requestData);
+        // Log the response from the server
+        console.log('Response:', response.data.response);
+
+        return response.data.response;
+        // alert('Tasks sent successfully!');
+      } catch (error) {
+        console.error('Error:', error);
+        // alert('Error sending tasks');
+      }
+  }
 
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);
@@ -54,11 +93,6 @@ function ChatBot() {
         return;
       }
     }
-
-    setTimeout(() => {
-      setBotTyping(false);
-      setMessages([...messages, sampleData[messages.length]]);
-    }, 2000);
   }, [messages]);
 
   useEffect(() => {
