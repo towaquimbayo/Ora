@@ -41,12 +41,12 @@ export default function TaskCard({ task, setTasks, setTasksUpdated }) {
         </div>
       )}
       <div className="flex-col w-full pl-4">
-        <div className="flex justify-between">
-          <h2 className="text-md font-semibold mb-2 overflow-hidden truncate sm:text-lg">
+        <div className="w-full flex justify-between">
+          <h2 className="text-md font-semibold mb-2 pr-4 sm:text-lg max-w-[60%]">
             {task.name}
           </h2>
           <button
-            className="bg-transparent border border-[#3573e7] text-[#3573e7] rounded-md min-w-16 px-2 py-0.5 text-sm hover:bg-[#3573e7] hover:text-white transition duration-300 ease-in-out"
+            className="bg-transparent border border-[#3573e7] text-[#3573e7] rounded-md px-2 py-0.5 text-sm hover:bg-[#3573e7] hover:text-white transition duration-300 ease-in-out h-8"
             onClick={(e) => {
               e.stopPropagation();
               router.push(`/edit-task?id=${task._id}`);
