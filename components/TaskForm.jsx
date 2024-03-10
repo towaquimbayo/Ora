@@ -6,7 +6,6 @@ import { LucidePlus } from 'lucide-react';
 const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [breakdown, setBreakdown] = useState([]);
-    console.log(task);
 
     useEffect(() => {
         const course = data.find((course) => course._id === task.course);
@@ -17,24 +16,22 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
     }, [task.course, data]);
 
     useEffect(() => {
-        if (data.length === 1) {
+        if (data.length >= 1) {
             const course = data[0];
-            if (task.course !== course._id) {
-                setTask({ ...task, course: course._id });
-                setSelectedCourse(course);
-                setBreakdown(course.breakdown);
+            setTask((prevTask) => ({
+                ...prevTask,
+                course: course._id,
+            }));
+            setSelectedCourse(course);
+            setBreakdown(course.breakdown);
+            if (course.breakdown.length === 1) {
+                setTask((prevTask) => ({
+                    ...prevTask,
+                    type: course.breakdown[0]._id,
+                }));
             }
         }
-    }, [data, setTask, task]);
-
-    useEffect(() => {
-        if (breakdown.length === 1) {
-          setTask((prevTask) => ({
-            ...prevTask,
-            type: breakdown[0]._id,
-          }));
-        }
-      }, [breakdown, setTask]);
+    }, [data, setTask]);
 
     const handleUploadSuccess = (result) => {
         console.log(result);
@@ -84,7 +81,7 @@ const TaskForm = ({ data, type, task, setTask, submitting, handleSubmit }) => {
                         Type
                     </span>
                     <br />
-                    <select value={task.type?._id} onChange={(e) =>{
+                    <select value={task.type?._id} onChange={(e) => {
                         const selectedType = breakdown.find((type) => type._id === e.target.value);
                         setTask({ ...task, type: selectedType });
                     }} required className='form_select' >
