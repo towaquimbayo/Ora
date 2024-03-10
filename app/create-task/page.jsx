@@ -4,11 +4,17 @@ import {useState, useEffect} from 'react';
 import {useSession} from 'next-auth/react';
 import {useRouter} from 'next/navigation';
 import TaskForm from '@/components/TaskForm';
-    import ChatBot from "@/components/Chatbot";
+import ChatBot from "@/components/Chatbot";
 
 const CreateTask = () => {
     const router = useRouter();
-    const {data: session} = useSession();
+    const { data: session, status } = useSession();
+
+    useEffect(() => {
+        if (!session && status === "unauthenticated") {
+            router.push('/');
+        }
+    }, [session, status, router]);
 
     const [myCourses, setMyCourses] = useState([]);
     useEffect(() => {
@@ -63,17 +69,11 @@ const CreateTask = () => {
         }
     };
 
-    return (<div className="w-full">
-            <div className="inline-flex w-full space-x-6 ">
-                <div className="w-1/2">
-                    <TaskForm data={myCourses} type="Create" task={task} setTask={setTask} submitting={submitting}
-                              handleSubmit={createTask}/>
-                </div>
-                <div className="w-1/2">
-                    <ChatBot/>
-                </div>
-            </div>
-        </div>
+    return (<>
+            <TaskForm data={myCourses} type="Create" task={task} setTask={setTask} submitting={submitting}
+                      handleSubmit={createTask}/>
+        </>
+
 
     );
 };
