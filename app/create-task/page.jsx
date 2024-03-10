@@ -4,8 +4,7 @@ import {useState, useEffect} from 'react';
 import {useSession} from 'next-auth/react';
 import {useRouter} from 'next/navigation';
 import TaskForm from '@/components/TaskForm';
-import CourseForm from "@/components/CourseForm";
-import ChatBot from "@/components/Chatbot";
+    import ChatBot from "@/components/Chatbot";
 
 const CreateTask = () => {
     const router = useRouter();
@@ -65,7 +64,7 @@ const CreateTask = () => {
     };
 
     return (<div className="w-full">
-            <div className="inline-flex w-full space-x-4 ">
+            <div className="inline-flex w-full space-x-6 ">
                 <div className="w-1/2">
                     <TaskForm data={myCourses} type="Create" task={task} setTask={setTask} submitting={submitting}
                               handleSubmit={createTask}/>
