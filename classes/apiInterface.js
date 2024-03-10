@@ -67,7 +67,8 @@ class ApiInterface {
 async function main() {
     const apiInterface = new ApiInterface();
 
-		const tasksArray = [
+		const tasksArray = 
+		[
 			{
 				title: "Lab 3: SQL Queries",
 				dueDate: "2023-03-16",

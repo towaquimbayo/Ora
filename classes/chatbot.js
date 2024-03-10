@@ -105,7 +105,7 @@ async function main() {
 	dreams.`
 
 
-	const generatedText = await chatbot.sendMessage(previousHistory, pdfContent, "What do you mean by past can guide us in the present?");
+	const generatedText = await chatbot.sendMessage(previousHistory, pdfContent, "Does Emily get in trouble for following the past?");
 	console.log(generatedText);
 }
 
