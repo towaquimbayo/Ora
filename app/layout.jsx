@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-
+import { Suspense } from "react";
 import "@/styles/globals.css";
 import Nav from "@/components/Nav";
 import Provider from "@/components/Provider";
@@ -21,7 +21,7 @@ const RootLayout = ({ children }) => (
 
         <main className="app">
           <Nav />
-          {children}
+          <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
         </main>
       </Provider>
     </body>
