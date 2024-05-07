@@ -1,7 +1,7 @@
 # ōra - AI Time Management App
 > An AI-powered time management web application that analyzes students’ schedules, assignment deadlines, and preferences to create personalized task lists and schedules to enhance productivity and reduce stress.
 
-_Developed by Team 15 for QDS Hacks 2024. Came in **3rd** place in the hackathon._<br />
+_Developed by Team 15 for QDS Hacks 2024. :3rd_place_medal: Came in **3rd** place in the hackathon._<br />
 View the project [_here_](https://qds-hacks-2024.onrender.com/).<br />
 View the pitch video [_here_](https://www.youtube.com/watch?v=Gm644fFPYi8).
 
