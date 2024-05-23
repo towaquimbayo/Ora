@@ -17,7 +17,6 @@ export default function Home() {
     const fetchTasks = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/tasks`);
       const data = await response.json();
-      console.log(data);
       setMyTasks(data);
       setIsFetching(false);
     };

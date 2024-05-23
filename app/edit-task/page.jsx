@@ -87,9 +87,11 @@ const EditTask = () => {
             if (response.ok) {
                 router.push('/');
             } else {
+                router.push('/edit-task?id=' + taskId)
                 console.error('Failed to update the task');
             }
         } catch (error) {
+            router.push('/edit-task?id=' + taskId)
             console.error(error);
         } finally {
             setIsSubmitting(false);
