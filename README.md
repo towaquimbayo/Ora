@@ -3,7 +3,7 @@
 # Ora
 
 ![Ora Thumbnail](screenshots/ora-thumbnail.jpg)
-AI-powered time management web application designed to help students organize their tasks, such as assignments, labs, quizzes, exams, and other homework-related materials for their courses. The app enhances students' time management by analyzing schedules, assignment deadlines, and personal preferences to create personalized task lists and schedules. Ora aims to boost productivity and reduce stress by automatically prioritizing tasks based on course credits, task weight, and deadlines.
+AI-powered time-management web application designed to help students organize their tasks, such as assignments, labs, quizzes, exams, and other homework-related materials for their courses. The app enhances students' time management by analyzing schedules, assignment deadlines, and personal preferences to create personalized task lists and schedules. Ora aims to boost productivity and reduce stress by automatically prioritizing tasks based on course credits, task weight, and deadlines.
 
 For details on the OpenAI features we created, visit our separate GitHub repository [_here_](https://github.com/abhishekchouhannk/qds2024-ai-api).
 
@@ -110,7 +110,7 @@ For the project to run correctly, environment variables are required. Rename the
 
 1. Sign up for a MongoDB Atlas account at <https://www.mongodb.com/cloud/atlas/register>. Then create a database Cluster and connect your project to that Cluster by clicking on the `Connect`, selecting the `Connect To Your Application` option and copying the Database `URI` string as your `DATABASE_URL`. Finally, replace the `username` and `password` fields in the URI string with your database credentials.
 2. Create a Google OAuth app at <https://refine.dev/blog/nextauth-google-github-authentication-nextjs/#for-googleprovider-make-sure-you-have-a-google-account/>.
-3. Sign up for a OpenAI account and follow the documentation at <https://platform.openai.com/docs/quickstart?context=node> to obtain your API key and setup OpenAI.
+3. Sign up for an OpenAI account and follow the documentation at <https://platform.openai.com/docs/quickstart?context=node> to obtain your API key and set up OpenAI.
 4. Create a Cloudinary account and follow the documentation at <https://cloudinary.com/guides/front-end-development/integrating-cloudinary-with-next-js> to obtain your API credentials and setup Cloudinary with Next.js
 
 </details>
@@ -134,7 +134,7 @@ Running the application locally or in production is straightforward since both t
 Efficiently organize and manage tasks and schedules to optimize productivity.
 
 * __Personalized Task Lists and Schedules__: The application analyzes students’ schedules and preferences to create personalized task lists and schedules, prioritizing tasks to enhance productivity and reduce stress.
-* __Task Prioritization__: Using Open AI, the application prioritizes tasks automatically by considering course credits, task weight, and deadlines, helping students focus on the most important tasks first.
+* __Task Prioritization__: Using OpenAI, the application prioritizes tasks automatically by considering course credits, task weight, and deadlines, helping students focus on the most important tasks first.
 * __Calendar View__: Students can view their schedules in a calendar format, drag and drop tasks to move deadlines, and create new tasks directly on the calendar.
 * __Task List View__: Tasks are displayed in a list format, sectioned by courses, allowing students to manage their workload efficiently.
 
@@ -147,7 +147,7 @@ Create, manage, and delete courses and tasks with detailed information.
 
 ### AI-Powered Features
 
-Leveraging Open AI to provide smart solutions and assistance.
+Leveraging OpenAI to provide smart solutions and assistance.
 
 * __Task Prioritization__: The AI prioritizes tasks based on several factors, including course credits, task weight, and deadlines, ensuring that students focus on the most critical tasks first.
 * __AI Chatbot__: An AI chatbot powered by OpenAI acts as a study buddy facilitating natural language conversations. Students can interact with the chatbot about task requirements or deadlines, upload files for analysis, and receive help with their tasks or get answers to their questions.
@@ -162,7 +162,7 @@ Additional tools to help students stay organized and efficient.
 
 ## Awards
 
-Ora has received significant recognition for its impact and innovative use of technology. At the QDS Hacks 2024 Hackathon, we were honored with the following award:
+Ora has received significant recognition for its impact and innovative use of technology. At the QDS Hacks 2024 Hackathon, we were honoured with the following award:
 
 * __3rd Place__: Competing against over 300+ students, Ora stood out for its potential to enhance student health and well-being. Our AI-powered solution offers a revolutionary approach to homework time management, leveraging intelligent algorithms to prioritize tasks and reduce stress.
 
