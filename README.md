@@ -168,4 +168,4 @@ Ora has received significant recognition for its impact and innovative use of te
 
 These awards reflect our commitment to creating a high-impact, user-friendly platform using cutting-edge technologies.
 
-For more details, you can read our [Devpost submission here](https://devpost.com/software/ora-32wnoz).
+For more details, you can read our Devpost submission [here](https://devpost.com/software/ora-32wnoz).
