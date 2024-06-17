@@ -164,7 +164,7 @@ Additional tools to help students stay organized and efficient.
 
 Ora has received significant recognition for its impact and innovative use of technology. At the QDS Hacks 2024 Hackathon, we were honoured with the following award:
 
-* __3rd Place__: Competing against over 300+ students, Ora stood out for its potential to enhance student health and well-being. Our AI-powered solution offers a revolutionary approach to homework time management, leveraging intelligent algorithms to prioritize tasks and reduce stress.
+* :3rd_place_medal:__3rd Place__: Competing against over 300+ students, Ora stood out for its potential to enhance student health and well-being. Our AI-powered solution offers a revolutionary approach to homework time management, leveraging intelligent algorithms to prioritize tasks and reduce stress.
 
 These awards reflect our commitment to creating a high-impact, user-friendly platform using cutting-edge technologies.
 
