@@ -53,10 +53,10 @@ _Check out the live project [_here_](https://qds-hacks-2024.onrender.com/). Watc
 * React.js `v18.0.0`
 * JavaScript
 * Axios `v1.6.7`
+* Cloudinary `v6.2.1`
 * FullCalendar `v6.1.11`
 * MongoDB / Mongoose `v8.2.1`
 * Next-Auth `v4.24.7`
-* Next Cloudinary `v6.2.1`
 * TailwindCSS `v3.3.0`
 * Node.js
 * Express `v4.18.3`
